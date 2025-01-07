@@ -8,25 +8,19 @@
 int main()
 {
     std::string str = "Hello world!!";
-    std::map<char, int, std::greater<> > m{};
-    std::multimap<int,char, std::greater<> > m_1{};
+    std::multimap<int, char, std::greater<> > m_1{};
     std::cout << "[IN]: " << str << std::endl;
 
     std::sort(begin(str), end(str), simple_functor()); // сортировка
 
     int value{};
     int count{};
-    for (auto i : str) // заполнение ключ - значение (уникальные ключи)
+    for (int i = 0; i < str.length(); i++) // заполнение ключ - значение 
     {
-        if (i == value) count++;
+        if (str[i] == value) count++;
         else count = 1;
-        value = i;
-        m[i] = count ;
-    };
-
-    for (auto i : m) // обмен местами ключ-значение для сортировки по частоте
-    {
-       m_1.insert({i.second , i.first }); 
+        value = str[i];
+        if (str[i] != str[i+1] && str[i+1] != str.length()-1) m_1.insert({count , str[i]});   
     };
 
     std::cout << "[OUT]: " << std::endl;
@@ -35,8 +29,6 @@ int main()
     {
         std::cout << elem.second << ": " << elem.first << std::endl; // вывод на экран частоты символов в порядке убывания частоты
     }
-
     return EXIT_SUCCESS;
-
 }
 
