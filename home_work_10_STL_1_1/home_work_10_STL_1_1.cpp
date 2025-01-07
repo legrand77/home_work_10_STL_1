@@ -20,7 +20,7 @@ int main()
         if (str[i] == value) count++;
         else count = 1;
         value = str[i];
-        if (str[i] != str[i+1] && str[i+1] != str.length()-1) m_1.insert({count , str[i]});   
+        if (str[i] != str[i+1]) m_1.insert({count , str[i]});   
     };
 
     std::cout << "[OUT]: " << std::endl;
